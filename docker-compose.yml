@@ -1,0 +1,52 @@
+services:
+  frontend:
+    container_name: frontend
+    build:
+      context: .
+      target: frontend
+    depends_on:
+      - backend
+    ports:
+      - '3001:3001'
+    command: npm run dev -- --host 0.0.0.0
+    working_dir: /app/frontend
+    volumes:
+      - ./frontend:/app/frontend
+      - node_modules:/app/frontend/node_modules
+    hostname:
+      frontend
+  backend:
+    container_name: backend
+    build:
+      context: .
+      target: backend
+    depends_on:
+      - db
+    ports:
+      - '3000:3000'
+    command: rails server -b 0.0.0.0
+    working_dir: /app/backend
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./backend:/app/backend
+    hostname:
+      backend
+  db:
+    container_name: postgres
+    image: postgres:14
+    volumes:
+      - db:/var/lib/postgresql/data
+    ports:
+      - '5433:5432'
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: pgpassword
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+    hostname:
+      postgres
+
+volumes:
+  db:
+  node_modules:
