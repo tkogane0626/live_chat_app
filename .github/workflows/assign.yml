@@ -2,21 +2,21 @@ name: Assign
 
 on:
   pull_request:
-    types:
-      - opend
+    types: ["opened"]
+
+permissions:
+  pull-requests: write
+  repository-projects: read
 
 jobs:
   assign:
-    name: Assign
-    if: endsWith(github.actor, '[bot]') == false && github.event.pull_request.assignee == null
+    if: ${{ github.event.pull_request.user.login != 'dependabot[bot]' || toJSON(github.event.pull_request.assignees) == '[]' }}
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-      repository-projects: read
+    timeout-minutes: 1
     steps:
-      - name: Add event actor to assignees
+      - run: gh pr edit "$PULL_NUMBER" --repo "$REPOSITORY" --add-assignee "$CREATOR"
         env:
-          GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
-        run: gh pr edit ${{ github.event.number }} --add-assignee ${{ github.actor }}
-
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+          PULL_NUMBER: ${{ github.event.pull_request.number }}
+          CREATOR: ${{ github.event.pull_request.user.login }}
