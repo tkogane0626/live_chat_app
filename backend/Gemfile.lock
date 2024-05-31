@@ -222,6 +222,7 @@ GEM
       rspec-expectations (~> 3.13)
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
+    rspec-request_describer (0.5.0)
     rspec-support (3.13.1)
     rubocop (1.64.0)
       json (~> 2.3)
@@ -291,6 +292,7 @@ DEPENDENCIES
   rack-cors (= 2.0.2)
   rails (= 7.0.8)
   rspec-rails (= 6.1.2)
+  rspec-request_describer (= 0.5.0)
   rubocop
   rubocop-capybara
   rubocop-factory_bot

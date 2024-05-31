@@ -21,6 +21,7 @@ group :development, :test do
   gem 'pry-rails', '0.3.9'
   gem 'pry-stack_explorer', '0.6.1'
   gem 'rspec-rails', '6.1.2'
+  gem 'rspec-request_describer', '0.5.0'
 end
 
 group :development do
