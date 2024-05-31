@@ -2106,7 +2106,7 @@ RSpecRails/HttpStatus:
   Enabled: true
 
 RSpecRails/InferredSpecType:
-  Enabled: true
+  Enabled: false
 
 RSpecRails/MinitestAssertions:
   Enabled: true
