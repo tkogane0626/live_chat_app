@@ -17,8 +17,7 @@ require:
   - rubocop-factory_bot
   - rubocop-rspec_rails
 
-#################### Bundler ###############################
-
+############################## Bundler ##############################
 Bundler/DuplicatedGem:
   Enabled: true
 
@@ -40,8 +39,7 @@ Bundler/InsecureProtocolSource:
 Bundler/OrderedGems:
   Enabled: true
 
-#################### Gemspec ###############################
-
+############################## Gemspec ##############################
 Gemspec/DependencyVersion:
   Enabled: true
 
@@ -66,8 +64,7 @@ Gemspec/RequiredRubyVersion:
 Gemspec/RubyVersionGlobalsUsage:
   Enabled: true
 
-#################### Layout ###########################
-
+############################## Layout ##############################
 Layout/AccessModifierIndentation:
   Enabled: true
 
@@ -365,8 +362,7 @@ Layout/TrailingEmptyLines:
 Layout/TrailingWhitespace:
   Enabled: true
 
-#################### Lint ##################################
-
+############################## Lint ##############################
 Lint/AmbiguousAssignment:
   Enabled: true
 
@@ -772,8 +768,7 @@ Lint/UselessTimes:
 Lint/Void:
   Enabled: true
 
-#################### Metrics ###############################
-
+############################## Metrics ##############################
 Metrics/AbcSize:
   Max: 15
 
@@ -806,13 +801,11 @@ Metrics/ParameterLists:
 Metrics/PerceivedComplexity:
   Enabled: true
 
-################## Migration #############################
-
+############################## Migration ##############################
 Migration/DepartmentName:
   Enabled: true
 
-#################### Naming ##############################
-
+############################## Naming ##############################
 Naming/AccessorMethodName:
   Enabled: true
 
@@ -867,8 +860,7 @@ Naming/VariableName:
 Naming/VariableNumber:
   Enabled: true
 
-#################### Security ##############################
-
+############################## Security ##############################
 Security/CompoundHash:
   Enabled: true
 
@@ -890,8 +882,7 @@ Security/Open:
 Security/YAMLLoad:
   Enabled: true
 
-##################### Style ##################################
-
+############################## Style ##############################
 Style/AccessModifierDeclarations:
   Enabled: true
 
@@ -1663,8 +1654,7 @@ Style/YodaExpression:
 Style/ZeroLengthPredicate:
   Enabled: true
 
-################################## Performance ##################################
-
+############################## Performance ##############################
 Performance/Caller:
   Enabled: true
 
@@ -1740,7 +1730,7 @@ Performance/UnfreezeString:
 Performance/UriDefaultParser:
   Enabled: true
 
-################################## RSpec ##################################
+############################## RSpec ##############################
 RSpec/AlignLeftLetBrace:
   Enabled: true
 
@@ -2050,7 +2040,7 @@ RSpec/VoidExpect:
 RSpec/Yield:
   Enabled: true
 
-################################## Capybara ##################################
+############################## Capybara ##############################
 Capybara/CurrentPathExpectation:
   Enabled: true
 
@@ -2072,11 +2062,11 @@ Capybara/SpecificMatcher:
 Capybara/VisibilityMatcher:
   Enabled: true
 
+############################## Rspec/Capybara ##############################
 RSpec/Capybara/FeatureMethods:
   Enabled: true
 
-################################## RSpec/FactoryBot ##################################
-
+############################## FactoryBot ##############################
 FactoryBot/AttributeDefinedStatically:
   Enabled: true
 
@@ -2095,7 +2085,7 @@ FactoryBot/FactoryNameStyle:
 FactoryBot/SyntaxMethods:
   Enabled: true
 
-################################## RSpec/Rails ##################################
+############################## RSpecRails ##############################
 RSpecRails/AvoidSetupHook:
   Enabled: true
 
