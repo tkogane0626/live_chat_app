@@ -992,7 +992,7 @@ Style/ConditionalAssignment:
   Enabled: true
 
 Style/ConstantVisibility:
-  Enabled: true
+  Enabled: false
 
 Style/Copyright:
   Enabled: false
