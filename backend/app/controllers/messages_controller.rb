@@ -2,9 +2,8 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!, only: ['index']
 
   def index
-    messages = Message.includes(:user).all
+    messages = Message.includes(:user, likes: :user).all
 
     render(json: messages, each_serializer: MessageSerializer, status: :ok)
-    # render(json: messages, status: :ok)
   end
 end
