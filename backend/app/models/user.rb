@@ -4,6 +4,7 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   has_many :messages, dependent: nil
+  has_many :likes, dependent: nil
 
   validates :name, presence: true, length: { maximum: 30 }
 end

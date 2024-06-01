@@ -1,5 +1,7 @@
 class Message < ApplicationRecord
   belongs_to :user
 
-  # validates :content, precense: true
+  has_many :likes, dependent: nil
+
+  validates :content, presence: true
 end
