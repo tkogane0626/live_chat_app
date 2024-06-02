@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "actioncable": "^5.2.8-1",
     "axios": "^1.7.2",
     "vue": "^3.3.4",
     "vue-axios": "^3.5.2",
