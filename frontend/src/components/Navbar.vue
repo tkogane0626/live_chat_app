@@ -3,7 +3,7 @@
     <div>
       <p>こんにちは、<span class="name">{{ name }}</span>さん</p>
       <p class="email">現在{{ email }}でログインです</p>
-      <dir class="error">{{ error }}</dir>
+      <div class="error">{{ error }}</div>
     </div>
     <button @click="logout">ログアウト</button>
   </nav>
@@ -12,7 +12,7 @@
 <script>
 import axios from 'axios'
 import removeItem from '../auth/removeItem'
-import { getName, getUid } from '../auth/getItem'
+import { getAccessToken, getClient, getName, getUid } from '../auth/getItem'
 
 export default {
   data() {
@@ -33,8 +33,8 @@ export default {
         const res = await axios.delete('http://localhost:3000/auth/sign_out', {
           headers: {
             uid: this.email,
-            "access-token": window.localStorage.getItem('access-token'),
-            client: window.localStorage.getItem('client')
+            "access-token": getAccessToken(),
+            client: getClient()
           }
         })
 
@@ -70,10 +70,10 @@ nav {
     margin: 2px auto;
     font-size: 16px;
     color: #444;
-  }
-  p.email {
-    font-size: 14px;
-    color: #999;
+    email {
+      font-size: 14px;
+      color: #999;
+    }
   }
 }
 </style>
