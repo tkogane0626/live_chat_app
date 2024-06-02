@@ -4,8 +4,14 @@
       <ul v-for="message in messages" :key="message.id">
         <li :class="{ received: message.email !== uid, sent: message.email === uid }">
           <span class="name">{{ message.name }}</span>
-          <span class="message">{{ message.content }}</span>
-          <span class="created-at">{{ formatDateToJST(message.created_at) }}</span>
+          <div class="message" @dblclick="handleLike(message)">
+            {{ message.content }}
+            <div v-if="message.likes.length" class="heart-container">
+              <font-awesome-icon icon="heart" class="heart" />
+              <span class="heart-count">{{ message.likes.length }}</span>
+            </div>
+          </div>
+          <span class="created-at">{{ message.created_at }}</span>
         </li>
       </ul>
     </div>
@@ -13,11 +19,15 @@
 </template>
 
 <script>
-import { getUid } from '../auth/getItem'
+import axios from 'axios'
+import { getAccessToken, getClient, getUid } from '../auth/getItem'
 
 export default {
   props: [
     'messages'
+  ],
+  emits: [
+    'connectCable'
   ],
   data() {
     return {
@@ -25,6 +35,63 @@ export default {
     }
   },
   methods: {
+    handleLike (message) {
+      for (let i = 0; i < message.likes.length; i++) {
+        const like = message.likes[i]
+
+        if (like.email === this.uid) {
+          this.deleteLike(like.id)
+          return
+        }
+      }
+      this.createLike(message.id)
+    },
+    async createLike(messageId) {
+      try {
+        const response = await axios.post(`http://localhost:3000/messages/${messageId}/likes`, {},
+          {
+            headers: {
+              uid: this.uid,
+              "access-token": getAccessToken(),
+              client: getClient()
+            }
+          }
+        )
+
+        if (response) {
+          console.log('いいねが付きました');
+        } else {
+          new Error('いいねできませんでした')
+        }
+
+        this.$emit('connectCable')
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async deleteLike(likeId) {
+      try {
+        const response = await axios.delete(`http://localhost:3000/likes/${likeId}`,
+          {
+            headers: {
+              uid: this.uid,
+              "access-token": getAccessToken(),
+              client: getClient()
+            }
+          }
+        )
+
+        if (response) {
+          console.log('いいねが押されました')
+        } else {
+          new Error('いいねを削除できませんでした')
+        }
+
+        this.$emit('connectCable')
+      } catch (error) {
+        console.log(error)
+      }
+    },
     formatDateToJST(value) {
       const date = new Date(value);
       return date.toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
@@ -60,6 +127,9 @@ ul {
     margin-bottom: 2px;
     max-width: 400px;
   }
+  message::selection {
+    background: #eee;
+  }
 }
 
 .sent {
@@ -72,6 +142,9 @@ ul {
     border-radius: 30px;
     margin-bottom: 2px;
     max-width: 400px;
+  }
+  .message::selection {
+    background: #677bb4;
   }
 }
 
@@ -93,5 +166,35 @@ ul {
 .messages {
   max-height: 400px;
   overflow: auto;
+}
+
+.message {
+  position: relative;
+}
+
+.heart-container {
+  background: white;
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 30px;
+  min-width: 25px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(245, 245, 245);
+  padding: 1px 2px;
+  z-index: 2;
+  bottom: -7px;
+  right: 0px;
+  font-size: 9px;
+}
+
+.heart {
+  color: rgb(236, 29, 29);
+}
+
+.heart-count {
+  color: rgb(20, 19, 19);
 }
 </style>
