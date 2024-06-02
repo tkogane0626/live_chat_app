@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <Navbar />
-    <ChatWindow :messages="messages" />
+    <ChatWindow @connectCable="connectCable" :messages="messages" />
     <NewChatForm @connectCable="connectCable" />
   </div>
 </template>
@@ -11,7 +11,7 @@ import axios from 'axios'
 import ActionCable from 'actioncable'
 import Navbar from '../components/Navbar.vue'
 import ChatWindow from '../components/ChatWindow.vue'
-import NewChatForm from '../components/NewChatForm.vue';
+import NewChatForm from '../components/NewChatForm.vue'
 import { getAccessToken, getClient, getUid } from '../auth/getItem'
 
 export default {
@@ -28,7 +28,7 @@ export default {
   methods: {
     async getMessages() {
       try {
-        const res = await axios.get('http://localhost:3000/messages', {
+        const response = await axios.get('http://localhost:3000/messages', {
           headers: {
             "access-token": getAccessToken(),
             client: getClient(),
@@ -36,11 +36,11 @@ export default {
           }
         })
 
-        if (!res) {
+        if (!response) {
           new Error('メッセージ一覧を取得できませんでした')
         }
 
-        this.messages = res.data
+        this.messages = response.data
       } catch (err) {
         console.log(err)
       }
