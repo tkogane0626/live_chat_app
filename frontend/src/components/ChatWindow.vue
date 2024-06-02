@@ -1,6 +1,6 @@
 <template>
   <div class="chat-window">
-    <div v-if="messages" class="messages">
+    <div v-if="messages" class="messages" ref="messages">
       <ul v-for="message in messages" :key="message.id">
         <li :class="{ received: message.email !== uid, sent: message.email === uid }">
           <span class="name">{{ message.name }}</span>
@@ -11,7 +11,7 @@
               <span class="heart-count">{{ message.likes.length }}</span>
             </div>
           </div>
-          <span class="created-at">{{ message.created_at }}</span>
+          <span class="created-at">{{ message.created_at }}前</span>
         </li>
       </ul>
     </div>
@@ -35,7 +35,7 @@ export default {
     }
   },
   methods: {
-    handleLike (message) {
+    handleLike(message) {
       for (let i = 0; i < message.likes.length; i++) {
         const like = message.likes[i]
 
@@ -95,6 +95,10 @@ export default {
     formatDateToJST(value) {
       const date = new Date(value);
       return date.toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
+    },
+    scrollToBottom() {
+      const element = this.$refs.messages
+      element.scrollTop = element.scrollHeight
     }
   }
 }
