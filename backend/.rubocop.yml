@@ -2083,7 +2083,7 @@ FactoryBot/FactoryNameStyle:
   Enabled: true
 
 FactoryBot/SyntaxMethods:
-  Enabled: true
+  Enabled: false
 
 ############################## RSpecRails ##############################
 RSpecRails/AvoidSetupHook:
