@@ -1921,7 +1921,7 @@ RSpec/MultipleDescribes:
   Enabled: true
 
 RSpec/MultipleExpectations:
-  Enabled: true
+  Enabled: false
 
 RSpec/MultipleMemoizedHelpers:
   Enabled: true
