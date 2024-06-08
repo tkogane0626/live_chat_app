@@ -1774,7 +1774,7 @@ RSpec/ContextMethod:
   Enabled: true
 
 RSpec/ContextWording:
-  Enabled: true
+  Enabled: false
 
 RSpec/DescribeClass:
   Enabled: true
