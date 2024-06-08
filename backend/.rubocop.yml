@@ -1933,7 +1933,7 @@ RSpec/NamedSubject:
   Enabled: true
 
 RSpec/NestedGroups:
-  Enabled: true
+  Enabled: false
 
 RSpec/NoExpectationExample:
   Enabled: false
