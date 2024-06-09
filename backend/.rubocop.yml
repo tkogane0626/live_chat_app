@@ -1930,7 +1930,7 @@ RSpec/MultipleSubjects:
   Enabled: true
 
 RSpec/NamedSubject:
-  Enabled: true
+  Enabled: false
 
 RSpec/NestedGroups:
   Enabled: false
