@@ -1732,10 +1732,10 @@ Performance/UriDefaultParser:
 
 ############################## RSpec ##############################
 RSpec/AlignLeftLetBrace:
-  Enabled: true
+  Enabled: false
 
 RSpec/AlignRightLetBrace:
-  Enabled: true
+  Enabled: false
 
 RSpec/AnyInstance:
   Enabled: true
