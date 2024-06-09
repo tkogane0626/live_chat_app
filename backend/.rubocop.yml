@@ -1825,7 +1825,7 @@ RSpec/Eq:
   Enabled: true
 
 RSpec/ExampleLength:
-  Enabled: true
+  Enabled: false
 
 RSpec/ExampleWithoutDescription:
   Enabled: true
