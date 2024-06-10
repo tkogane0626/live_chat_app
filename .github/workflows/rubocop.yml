@@ -1,0 +1,30 @@
+name: Rubocop
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  rubocop:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1.4
+          bundler-cache: true
+
+      - name: Bundler and gem install
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Run rubocop
+        run: bundle exec rubocop
