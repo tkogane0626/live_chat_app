@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :message do
-    # Lint/EmptyBlock
+    content { 'content' }
   end
 end
