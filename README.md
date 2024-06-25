@@ -43,5 +43,12 @@ $ docker compose build
 以下のコマンドを実行して、Dockerコンテナを起動します。
 
 ```bash
-$ docker compose up
+$ docker compose up -d
+```
+
+### DBのセットアップ
+
+以下のコマンドを実行して、データベースをセットアップします。
+```bash
+$ docker exec backend bundle exec rails db:setup
 ```
